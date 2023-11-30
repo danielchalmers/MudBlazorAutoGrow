@@ -1,0 +1,31 @@
+﻿@page "/"
+
+<MudTextField @ref="textField" T="string" AutoGrow />
+
+@code {
+	MudTextField<string> textField;
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await textField.SetText(await GetMySpecialText());
+		}
+
+		await base.OnAfterRenderAsync(firstRender);
+	}
+
+	async Task<string> GetMySpecialText()
+	{
+		await Task.CompletedTask;
+
+		var sb = new System.Text.StringBuilder();
+
+		for (int i = 0; i < 100; i++)
+		{
+			sb.AppendLine($"hi {i}");
+		}
+
+		return sb.ToString();
+	}
+}

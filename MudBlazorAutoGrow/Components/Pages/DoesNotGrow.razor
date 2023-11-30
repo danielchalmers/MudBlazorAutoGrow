@@ -1,0 +1,30 @@
+﻿@page "/notworking"
+
+<MudTextField @ref="textField" T="string" Text="@MyText" AutoGrow />
+
+@code {
+	MudTextField<string> textField;
+
+	public string MyText { get; private set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+
+		MyText = await GetMySpecialText();
+	}
+
+	async Task<string> GetMySpecialText()
+	{
+		await Task.CompletedTask;
+
+		var sb = new System.Text.StringBuilder();
+
+		for (int i = 0; i < 100; i++)
+		{
+			sb.AppendLine($"hi {i}");
+		}
+
+		return sb.ToString();
+	}
+}
