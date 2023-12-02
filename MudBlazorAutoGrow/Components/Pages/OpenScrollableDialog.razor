@@ -1,0 +1,17 @@
+﻿@page "/opensdialog"
+@inject IDialogService DialogService
+
+<MudScrollToTop>
+	<MudFab Color="Color.Tertiary" Icon="@Icons.Material.Filled.ArrowCircleUp" />
+</MudScrollToTop>
+
+<MudButton OnClick="Dialogd"> scroll to top dialog</MudButton>
+
+<MudTextField  T="string" Lines="99" />
+
+@code {
+	async Task Dialogd()
+	{
+		await DialogService.Show<ScrollableDialog>().Result;
+	}
+}
