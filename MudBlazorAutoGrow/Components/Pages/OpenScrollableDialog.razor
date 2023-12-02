@@ -5,13 +5,20 @@
 	<MudFab Color="Color.Tertiary" Icon="@Icons.Material.Filled.ArrowCircleUp" />
 </MudScrollToTop>
 
-<MudButton OnClick="Dialogd"> scroll to top dialog</MudButton>
+<MudButton OnClick="() => visible = true"> scroll to top dialog</MudButton>
 
-<MudTextField  T="string" Lines="99" />
+<MudTextField T="string" Lines="99" />
+
+<MudDialog DefaultFocus="DefaultFocus.Element" @bind-IsVisible="visible">
+	<DialogContent>
+		<MudScrollToTop>
+			<MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
+		</MudScrollToTop>
+
+		<MudTextField T="string" Lines="99" />
+	</DialogContent>
+</MudDialog>
 
 @code {
-	async Task Dialogd()
-	{
-		await DialogService.Show<ScrollableDialog>().Result;
-	}
+	private bool visible;
 }
